@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_item_zoos_introduction">
+
+    <fragment
+        android:id="@+id/navigation_item_zoos_introduction"
+        android:name="com.cindy.zoosintroduction.view.HomeFragment"
+        android:label="@string/navigation_item_zoos_introduction"
+        tools:layout="@layout/fragment_home" />
+
+    <!--    <fragment-->
+<!--        android:id="@+id/nav_slideshow"-->
+<!--        android:name="com.cindy.drawerlayoutpractice.ui.slideshow.SlideshowFragment"-->
+<!--        android:label="@string/menu_slideshow"-->
+<!--        tools:layout="@layout/fragment_slideshow" />-->
+</navigation>
