@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "165883037366",
+    "project_id": "zoos-introduction",
+    "storage_bucket": "zoos-introduction.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165883037366:android:781bac9ec5d7ce5ff58817",
+        "android_client_info": {
+          "package_name": "com.cindy.zoosintroduction"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "165883037366-c942ho3ikpvflgjnag6kl6o1rkmqhd7i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDk7k5KVGmr5-5iT7CwQaDAm_gMm0Ihe6o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "165883037366-c942ho3ikpvflgjnag6kl6o1rkmqhd7i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
