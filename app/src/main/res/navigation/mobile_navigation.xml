@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_item_zoos_introduction"
-        android:name="com.cindy.zoosintroduction.view.HomeFragment"
+        android:name="com.cindy.zoosintroduction.view.ZoosListFragment"
         android:label="@string/navigation_item_zoos_introduction"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_zoos_list" />
 
     <!--    <fragment-->
 <!--        android:id="@+id/nav_slideshow"-->

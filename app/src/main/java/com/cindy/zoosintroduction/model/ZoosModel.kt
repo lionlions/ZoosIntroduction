@@ -5,10 +5,10 @@ data class ZoosModel(
 )
 
 data class ZoosIntroduction(
-    var zoos_list: List<ZoosList>? = null
+    var zoos_list: List<Zoo>? = null
 )
 
-data class ZoosList(
+data class Zoo(
     var E_no: Int = -1,
     var E_Category: String? = null,
     var E_Name: String? = null,

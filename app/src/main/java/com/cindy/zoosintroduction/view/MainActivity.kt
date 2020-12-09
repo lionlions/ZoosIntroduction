@@ -23,20 +23,14 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 class MainActivity : AppCompatActivity() {
 
     private val TAG: String = javaClass.simpleName
-    private val DOCUMENT_ID: String = "19CrrOJVyS3e32Gb9GiR"
     private lateinit var appBarConfiguration: AppBarConfiguration
-
-    private var mFirebaseFirestore: FirebaseFirestore? = null
-    private var mDocumentData: Map<String, Any?>? = null
-    private var mZoosModel: ZoosModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         processView()
-        initializeCloudFirestore()
-        readDataFromFireStore()
+
 
     }
 
@@ -49,48 +43,6 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         vNavigationView.setupWithNavController(navController)
 
-    }
-
-    fun initializeCloudFirestore(){
-        mFirebaseFirestore = FirebaseFirestore.getInstance()
-    }
-
-    fun readDataFromFireStore(){
-        mFirebaseFirestore?.run{
-            collection("zoos_introduction")
-                .get()
-                .addOnCompleteListener(object: OnCompleteListener<QuerySnapshot>{
-                    override fun onComplete(task: Task<QuerySnapshot>) {
-
-                        if(task.isSuccessful){
-                            if(task.result!=null){
-                                for(document in task.result!!){
-                                    Log.d(TAG, "Document id: $document.id")
-                                    Log.d(TAG, "Document data: ${document.data}")
-                                    if(document.id==DOCUMENT_ID){
-                                        mDocumentData = document.data
-                                        break
-                                    }
-                                }
-                                processDocumentData()
-                            }else{
-                                // result is null
-                                Log.w(TAG, "result is null")
-                            }
-                        }else{
-                            Log.w(TAG, "Error when getting documents.", task.exception)
-                        }
-
-                    }
-                })
-        }
-    }
-
-    fun processDocumentData(){
-        if(mDocumentData!=null && mDocumentData!!.isNotEmpty()){
-            val documentDataToJson: String = Gson().toJson(mDocumentData)
-            mZoosModel = Gson().fromJson(documentDataToJson, ZoosModel::class.java)
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
