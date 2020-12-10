@@ -1,6 +1,9 @@
 package com.cindy.zoosintroduction.viewmodel
 
+import android.content.Context
+import android.content.Intent
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.*
 import com.cindy.zoosintroduction.BuildConfig
 import com.cindy.zoosintroduction.api.ApiRepository
@@ -13,7 +16,7 @@ import com.google.firebase.firestore.QuerySnapshot
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
 
-class ZoosListViewModel(private val mRepository: ApiRepository?): ViewModel() {
+class ZoosListViewModel(): ViewModel() {
 
     private val TAG: String = javaClass.simpleName
     private val DOCUMENT_ID: String = "19CrrOJVyS3e32Gb9GiR"
@@ -23,7 +26,7 @@ class ZoosListViewModel(private val mRepository: ApiRepository?): ViewModel() {
     private var mZoosModel: ZoosModel? = null
 
     var mZoosListLiveData: MutableLiveData<List<Zoo>> = MutableLiveData()
-    val isCastEmpty: LiveData<Boolean> = Transformations.map(mZoosListLiveData){
+    val isZoosListEmpty: LiveData<Boolean> = Transformations.map(mZoosListLiveData){
         it.isNullOrEmpty()
     }
 
@@ -84,12 +87,8 @@ class ZoosListViewModel(private val mRepository: ApiRepository?): ViewModel() {
         }
     }
 
-//    fun onItemClick(view: View, id: String){
-//        //Go to next cast detail activity
-//        val context: Context = view.context
-//        var intent: Intent = Intent()
-//        intent.setClass(context, CastDetailActivity::class.java)
-//        context.startActivity(intent)
-//    }
+    fun onItemClick(view: View, id: String){
+        //Go to next zoo detail fragment
+    }
 
 }

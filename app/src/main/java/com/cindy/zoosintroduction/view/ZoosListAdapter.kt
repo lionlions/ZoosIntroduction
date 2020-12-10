@@ -1,15 +1,15 @@
-package com.cindy.cindypodcasttest.view
+package com.cindy.zoosintroduction.view
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.cindy.cindypodcasttest.BuildConfig
-import com.cindy.cindypodcasttest.model.Podcast
-import com.cindy.cindypodcasttest.viewmodel.CastListViewModel
-import com.cindy.cindypodcasttest.databinding.ItemCastBinding
+import com.cindy.zoosintroduction.BuildConfig
+import com.cindy.zoosintroduction.databinding.ItemZoosListBinding
+import com.cindy.zoosintroduction.model.Zoo
+import com.cindy.zoosintroduction.viewmodel.ZoosListViewModel
 
-class CastAdapter(private val mViewModel: CastListViewModel): RecyclerView.Adapter<CastAdapter.ViewHolder>() {
+class ZoosListAdapter(private val mViewModel: ZoosListViewModel): RecyclerView.Adapter<ZoosListAdapter.ViewHolder>() {
 
     private val TAG: String = javaClass.simpleName
 
@@ -19,29 +19,29 @@ class CastAdapter(private val mViewModel: CastListViewModel): RecyclerView.Adapt
 
     override fun getItemCount(): Int {
         if(BuildConfig.DEBUG)Log.v(TAG, "===== getItemCount =====")
-        return mViewModel.mCastLiveData.value?.size ?: 0
+        return mViewModel.mZoosListLiveData.value?.size ?: 0
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if(BuildConfig.DEBUG)Log.v(TAG, "===== onBindViewHolder =====")
         if(BuildConfig.DEBUG)Log.i(TAG, "position: $position")
-        if(mViewModel.mCastLiveData.value!=null){
-            val podcast: Podcast = mViewModel.mCastLiveData.value!![position]
-            holder.bind(mViewModel, podcast)
+        if(mViewModel.mZoosListLiveData.value!=null){
+            val zoo: Zoo = mViewModel.mZoosListLiveData.value!![position]
+            holder.bind(mViewModel, zoo)
         }
     }
 
-    class ViewHolder private constructor(private val mBinding: ItemCastBinding): RecyclerView.ViewHolder(mBinding.root){
+    class ViewHolder private constructor(private val mBinding: ItemZoosListBinding): RecyclerView.ViewHolder(mBinding.root){
         companion object{
             fun from(parent: ViewGroup): ViewHolder{
                 val layoutInflater: LayoutInflater = LayoutInflater.from(parent.context)
-                val binding = ItemCastBinding.inflate(layoutInflater, parent, false)
+                val binding = ItemZoosListBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
         }
-        fun bind(viewModel: CastListViewModel, podcast: Podcast){
+        fun bind(viewModel: ZoosListViewModel, zoo: Zoo){
             mBinding.viewModel = viewModel
-            mBinding.podcast = podcast
+            mBinding.zoo = zoo
             mBinding.executePendingBindings()
         }
     }

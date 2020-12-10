@@ -13,7 +13,7 @@ class ViewModelFactory(
         modelClass.run {
             when {
                 isAssignableFrom(ZoosListViewModel::class.java) -> {
-                    return ZoosListViewModel(repository) as T
+                    return ZoosListViewModel() as T
                 }
                 else -> {
                     throw IllegalAccessException("Unknown ViewModel Class")
