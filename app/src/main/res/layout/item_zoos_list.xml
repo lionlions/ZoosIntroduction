@@ -21,7 +21,7 @@
         android:layout_margin="10dp"
         android:padding="10dp"
         app:cardCornerRadius="10dp"
-        android:onClick="@{(view) -> viewModel.onItemClick(view, zoo.E_Name)}">
+        android:onClick="@{(view) -> viewModel.onItemClick(view, zoo)}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -54,12 +54,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="@drawable/bg_category"
                 android:padding="3dp"
+                android:background="@drawable/bg_category"
                 android:text="@{zoo.e_Category}"
                 android:textColor="@android:color/white"
                 android:textSize="15dp"
                 android:textStyle="bold"
+                app:zooCategoryColor="@{zoo.e_Category_Color}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vZooPic" />
 

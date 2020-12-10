@@ -1,13 +1,15 @@
 package com.cindy.zoosintroduction.model
 
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.util.Log
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
-import com.cindy.zoosintroduction.R
 
 data class ZoosModel(
     var data: ZoosIntroduction? = null
@@ -20,6 +22,7 @@ data class ZoosIntroduction(
 data class Zoo(
     var E_no: Int = -1,
     var E_Category: String? = null,
+    var E_Category_Color: String? = null,
     var E_Name: String? = null,
     var E_Pic_URL: String? = null,
     var E_Info: String? = null,
@@ -48,6 +51,16 @@ data class Zoo(
                 .load(imageUrl)
                 .transition(DrawableTransitionOptions.withCrossFade(500))
                 .into(imageView)
+        }
+
+        @JvmStatic
+        @BindingAdapter("zooCategoryColor")
+        fun setZooCategoryColor(textView: TextView, color: String) {
+            Log.v(TAG,"color: $color")
+            if(textView.background is GradientDrawable){
+                val gradientDrawable: GradientDrawable = textView.background as GradientDrawable
+                gradientDrawable.setColor(Color.parseColor(color))
+            }
         }
     }
 }

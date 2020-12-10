@@ -87,8 +87,9 @@ class ZoosListViewModel(): ViewModel() {
         }
     }
 
-    fun onItemClick(view: View, id: String){
+    fun onItemClick(view: View, zoo: Zoo){
         //Go to next zoo detail fragment
+        Log.v(TAG, "item click!!")
     }
 
 }
