@@ -25,27 +25,27 @@ class PlantsInfoFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        mFragmentZoosListBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_zoos_list, container, false)
+        mFragmentZoosListBinding = DataBindingUtil.inflate(inflater, R.layout.multiple_animation_example, container, false)
 
-        processViewDataBinding()
-        processRecyclerView()
+//        processViewDataBinding()
+//        processRecyclerView()
 //        processViewModel()
 
         return mFragmentZoosListBinding.root
     }
 
-    fun processViewDataBinding(){
-        mZoosListViewModel = ViewModelProvider(this, ViewModelFactory()).get(ZoosListViewModel::class.java)
-        mFragmentZoosListBinding.run {
-            viewModel = mZoosListViewModel
-            lifecycleOwner = this@PlantsInfoFragment
-        }
-    }
+//    fun processViewDataBinding(){
+//        mZoosListViewModel = ViewModelProvider(this, ViewModelFactory()).get(ZoosListViewModel::class.java)
+//        mFragmentZoosListBinding.run {
+//            viewModel = mZoosListViewModel
+//            lifecycleOwner = this@PlantsInfoFragment
+//        }
+//    }
 
-    fun processRecyclerView(){
-        mAdapter = ZoosListAdapter(mZoosListViewModel)
-        mFragmentZoosListBinding.vZoosList.adapter = mAdapter
-    }
+//    fun processRecyclerView(){
+//        mAdapter = ZoosListAdapter(mZoosListViewModel)
+//        mFragmentZoosListBinding.vZoosList.adapter = mAdapter
+//    }
 
 //    fun processViewModel(){
 //        mZoosListViewModel.mZoosListLiveData.observe(, Observer {

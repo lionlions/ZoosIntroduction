@@ -7,10 +7,10 @@
         <item
             android:id="@+id/nav_zoos_introduction"
             android:icon="@drawable/ic_zoo"
-            android:title="@string/navigation_item_zoos_introduction" />
+            android:title="@string/navigation_item_zoos_list" />
         <item
             android:id="@+id/nav_plants"
             android:icon="@drawable/ic_plants"
-            android:title="@string/navigation_item_plants" />
+            android:title="@string/navigation_item_plants_list" />
     </group>
 </menu>

@@ -1,6 +1,7 @@
 package com.cindy.zoosintroduction.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,6 +53,10 @@ class ZoosListFragment : Fragment() {
             if(mAdapter!=null){
                 mAdapter!!.notifyDataSetChanged()
             }
+        })
+        mZoosListViewModel.mZoosListSelectItemLiveData.observe(this, Observer {
+            Log.w(TAG, "name: ${it.E_Name}")
+            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.)
         })
     }
 }

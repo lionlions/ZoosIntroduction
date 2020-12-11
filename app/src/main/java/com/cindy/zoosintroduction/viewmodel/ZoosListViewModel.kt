@@ -26,6 +26,7 @@ class ZoosListViewModel(): ViewModel() {
     private var mZoosModel: ZoosModel? = null
 
     var mZoosListLiveData: MutableLiveData<List<Zoo>> = MutableLiveData()
+    var mZoosListSelectItemLiveData: MutableLiveData<Zoo> = MutableLiveData()
     val isZoosListEmpty: LiveData<Boolean> = Transformations.map(mZoosListLiveData){
         it.isNullOrEmpty()
     }
@@ -90,6 +91,7 @@ class ZoosListViewModel(): ViewModel() {
     fun onItemClick(view: View, zoo: Zoo){
         //Go to next zoo detail fragment
         Log.v(TAG, "item click!!")
+        mZoosListSelectItemLiveData.value = zoo
     }
 
 }

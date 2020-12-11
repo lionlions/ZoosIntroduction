@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Zoos Introduction</string>
-    <string name="navigation_item_zoos_introduction">館區介紹</string>
-    <string name="navigation_item_plants">植物介紹</string>
+    <string name="navigation_item_zoos_list">館區介紹</string>
+    <string name="navigation_item_plants_list">植物介紹</string>
 </resources>
