@@ -13,7 +13,28 @@
 
     <fragment
         android:id="@+id/nav_plants"
-        android:name="com.cindy.zoosintroduction.view.PlantsInfoFragment"
-        android:label="@string/navigation_item_plants_list"
-        tools:layout="@layout/multiple_animation_example" />
+        android:name="com.cindy.zoosintroduction.view.PlantsListFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_plants_list">
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="zoo"
+            app:argType="com.cindy.zoosintroduction.model.Zoo" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_plant_info"
+        android:name="com.cindy.zoosintroduction.view.PlantInfoFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_plants_list">
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="plantInfo"
+            app:argType="com.cindy.zoosintroduction.model.PlantInfo" />
+    </fragment>
+
 </navigation>

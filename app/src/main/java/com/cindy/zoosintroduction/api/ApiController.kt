@@ -2,12 +2,15 @@ package com.cindy.zoosintroduction.api
 
 import android.util.Log
 import com.cindy.zoosintroduction.BuildConfig
+import com.cindy.zoosintroduction.model.PlantsInfoModel
+import com.cindy.zoosintroduction.retrofit.GetPlantsList
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class ApiController {
 
@@ -40,35 +43,23 @@ class ApiController {
         val client: OkHttpClient = okHttpBuilder.build()
         return Retrofit.Builder()
                         .baseUrl(url)
+                        .addConverterFactory(ScalarsConverterFactory.create())
                         .addConverterFactory(GsonConverterFactory.create())
                         .client(client)
                         .build()
     }
 
-//    fun getCast(url: String?, callback: Callback<CastModel>) {
-//        if(BuildConfig.DEBUG)Log.v(TAG, "===== getCast =====")
-//        val retrofit: Retrofit? = createRetrofit(url)
-//        if(retrofit!=null){
-//            val apiService: GetCast.ApiService = retrofit.create(
-//                GetCast.ApiService::class.java)
-//            val call: Call<CastModel> = apiService.getCast()
-//            call.enqueue(callback)
-//        }else{
-//            if(BuildConfig.DEBUG)Log.e(TAG, "Something went wrong!! Retrofit is null!!")
-//        }
-//    }
-//
-//    fun getCastDetail(url: String?, callback: Callback<CastDetailModel>) {
-//        if(BuildConfig.DEBUG)Log.v(TAG, "===== getCastDetail =====")
-//        val retrofit: Retrofit? = createRetrofit(url)
-//        if(retrofit!=null){
-//            val apiService: GetCastDetail.ApiService = retrofit.create(
-//                GetCastDetail.ApiService::class.java)
-//            val call: Call<CastDetailModel> = apiService.getCastDetail()
-//            call.enqueue(callback)
-//        }else{
-//            if(BuildConfig.DEBUG)Log.e(TAG, "Something went wrong!! Retrofit is null!!")
-//        }
-//    }
+    fun getPlantsList(url: String?, query: String, limit: Int, offset: Int, callback: Callback<String?>) {
+        if(BuildConfig.DEBUG)Log.v(TAG, "===== getPlantsList =====")
+        val retrofit: Retrofit? = createRetrofit(url)
+        if(retrofit!=null){
+            val apiService: GetPlantsList.ApiService = retrofit.create(
+                GetPlantsList.ApiService::class.java)
+            val call: Call<String?> = apiService.getPlantsList(query, limit, offset)
+            call.enqueue(callback)
+        }else{
+            if(BuildConfig.DEBUG)Log.e(TAG, "Something went wrong!! Retrofit is null!!")
+        }
+    }
 
 }

@@ -1,5 +1,18 @@
 <resources>
     <string name="app_name">Zoos Introduction</string>
-    <string name="navigation_item_zoos_list">館區介紹</string>
-    <string name="navigation_item_plants_list">植物介紹</string>
+    <string name="navigation_item_zoos_list">台北市立動物園</string>
+    <string name="the_end_of_data">沒有更多資料囉</string>
+
+    //Plant Info
+    <string name="family">科:\n%1s\n\n</string>
+    <string name="brief">簡介:\n%1s\n\n</string>
+    <string name="feature">特徵:\n%1s\n\n</string>
+    <string name="location">所在園區:\n%1s\n\n</string>
+    <string name="function">種植方式:\n%1s\n\n</string>
+    <string name="also_known">參考:\n%1s\n\n</string>
+    <string name="last_update">最後更新:\n%1s\n\n</string>
+
+    //Menu
+    <string name="menu_zoos_list">館區介紹</string>
+    <string name="menu_plans_list">植物介紹</string>
 </resources>

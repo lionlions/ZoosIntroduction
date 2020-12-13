@@ -26,7 +26,7 @@ class ZoosListViewModel(): ViewModel() {
     private var mZoosModel: ZoosModel? = null
 
     var mZoosListLiveData: MutableLiveData<List<Zoo>> = MutableLiveData()
-    var mZoosListSelectItemLiveData: MutableLiveData<Zoo> = MutableLiveData()
+    var mZoosListSelectItemLiveData: SingleLiveData<Zoo> = SingleLiveData()
     val isZoosListEmpty: LiveData<Boolean> = Transformations.map(mZoosListLiveData){
         it.isNullOrEmpty()
     }

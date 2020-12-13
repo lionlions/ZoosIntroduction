@@ -6,14 +6,9 @@
     <data>
 
         <import type="android.view.View" />
-
         <variable
-            name="viewModel"
-            type="com.cindy.zoosintroduction.viewmodel.PlantsListViewModel" />
-
-        <variable
-            name="zoo"
-            type="com.cindy.zoosintroduction.model.Zoo" />
+            name="plantInfo"
+            type="com.cindy.zoosintroduction.model.PlantInfo" />
     </data>
 
     <androidx.constraintlayout.motion.widget.MotionLayout
@@ -22,7 +17,7 @@
         android:layout_height="match_parent"
         android:background="#cccccc"
         android:orientation="vertical"
-        app:layoutDescription="@xml/motion_scene_fragment_plants_list">
+        app:layoutDescription="@xml/motion_scene_fragment_plant_info">
 
         <ImageView
             android:id="@+id/coverImage"
@@ -34,7 +29,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/header_view1"
-            app:zooImage="@{zoo.e_Pic_URL}" />
+            app:zooImage="@{plantInfo.f_Pic01_URL}" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline1"
@@ -69,7 +64,7 @@
             android:layout_marginTop="12dp"
             android:fontFamily="serif-monospace"
             android:gravity="center"
-            android:text="@{zoo.e_Name}"
+            android:text="@{plantInfo.f_Name_Ch}"
             android:textColor="#000000"
             android:textSize="28sp"
             android:textStyle="bold"
@@ -94,8 +89,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:fontFamily="serif-monospace"
             android:gravity="center"
-            android:text="@{zoo.e_Category}"
+            android:text="@{plantInfo.f_Name_Latin}"
             android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="italic"
@@ -120,8 +116,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:fontFamily="serif-monospace"
             android:gravity="center"
-            android:text="@{zoo.e_Memo}"
+            android:text="@{plantInfo.f_Genus}"
             android:textColor="#000000"
             android:textSize="16sp"
             android:textStyle="italic"
@@ -142,34 +139,18 @@
         <TextView
             android:id="@+id/contentText"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="sans-serif-condensed"
             android:nestedScrollingEnabled="false"
             android:padding="14dp"
-            android:text="@{zoo.e_Info}"
             android:textSize="17sp"
-            android:textStyle="italic"
+            android:scrollbars="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/memoTextView" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/vPlantsList"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:padding="14dp"
-            android:visibility="@{viewModel.isPlantsListEmpty()? View.GONE : View.VISIBLE}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/contentText"
-            tools:listitem="@layout/item_plants_list" />
+            app:layout_constraintTop_toBottomOf="@id/memoTextView" />
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

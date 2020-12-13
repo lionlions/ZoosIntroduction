@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         //navigation
         val navController: NavController = findNavController(R.id.nav_host_fragment)
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.navigation_item_zoos_introduction), vDrawerLayout)
+        appBarConfiguration = AppBarConfiguration(navController.graph, vDrawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         vNavigationView.setupWithNavController(navController)
 

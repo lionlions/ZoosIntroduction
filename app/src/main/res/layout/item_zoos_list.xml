@@ -50,7 +50,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/vZooPic" />
 
             <TextView
-                android:id="@+id/vZooCategory"
+                android:id="@+id/vPlantEnName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"

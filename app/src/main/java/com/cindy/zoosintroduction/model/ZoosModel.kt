@@ -2,6 +2,7 @@ package com.cindy.zoosintroduction.model
 
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
+import android.os.Parcelable
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,15 +11,19 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class ZoosModel(
     var data: ZoosIntroduction? = null
-)
+) : Parcelable
 
+@Parcelize
 data class ZoosIntroduction(
     var zoos_list: List<Zoo>? = null
-)
+) : Parcelable
 
+@Parcelize
 data class Zoo(
     var E_no: Int = -1,
     var E_Category: String? = null,
@@ -29,7 +34,7 @@ data class Zoo(
     var E_Memo: String? = null,
     var E_Geo: String? = null,
     var E_URL: String? = null
-){
+) : Parcelable{
     companion object {
 
         private val TAG: String = javaClass.simpleName

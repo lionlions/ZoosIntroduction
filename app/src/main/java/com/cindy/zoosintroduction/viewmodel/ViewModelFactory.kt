@@ -15,6 +15,9 @@ class ViewModelFactory(
                 isAssignableFrom(ZoosListViewModel::class.java) -> {
                     return ZoosListViewModel() as T
                 }
+                isAssignableFrom(PlantsListViewModel::class.java) -> {
+                    return PlantsListViewModel(repository) as T
+                }
                 else -> {
                     throw IllegalAccessException("Unknown ViewModel Class")
                 }

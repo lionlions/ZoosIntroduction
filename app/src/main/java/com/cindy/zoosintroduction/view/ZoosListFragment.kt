@@ -5,10 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.cindy.zoosintroduction.R
 import com.cindy.zoosintroduction.databinding.FragmentZoosListBinding
 import com.cindy.zoosintroduction.viewmodel.ViewModelFactory
@@ -49,14 +52,19 @@ class ZoosListFragment : Fragment() {
     }
 
     fun processViewModel(){
-        mZoosListViewModel.mZoosListLiveData.observe(this, Observer {
+        mZoosListViewModel.mZoosListLiveData.observe(viewLifecycleOwner, Observer {
             if(mAdapter!=null){
                 mAdapter!!.notifyDataSetChanged()
             }
         })
-        mZoosListViewModel.mZoosListSelectItemLiveData.observe(this, Observer {
+        mZoosListViewModel.mZoosListSelectItemLiveData.observe(viewLifecycleOwner, Observer {
             Log.w(TAG, "name: ${it.E_Name}")
-            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.)
+            val bundle: Bundle = bundleOf(
+                "title" to it.E_Name,
+                "zoo" to it
+            )
+            val navController: NavController = findNavController()
+            navController.navigate(R.id.nav_plants, bundle)
         })
     }
 }
