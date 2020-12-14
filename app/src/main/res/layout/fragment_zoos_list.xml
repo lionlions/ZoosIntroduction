@@ -23,8 +23,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="@{viewModel.MErrorMessageLiveData}"
-            android:visibility="@{viewModel.isZoosListEmpty ? View.VISIBLE : View.GONE}" />
+            android:textColor="@android:color/black"
+            android:text="@{viewModel.MErrorMessageLiveData}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vZoosList"

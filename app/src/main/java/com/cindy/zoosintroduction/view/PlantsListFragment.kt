@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -29,7 +31,7 @@ class PlantsListFragment : Fragment() {
     private var mZooInfo: Zoo? = null
     private val LIMIT_COUNT = 10
     private var mAdapter: PlantsListAdapter? = null
-    private var mCurrentPage: Int = -1
+    private var mCurrentPage: Int = 0
     private var mTotalPlantsCount: Int = 0
     private var isLoadEnd: Boolean = false
 
@@ -102,21 +104,24 @@ class PlantsListFragment : Fragment() {
                 )
                 navController.navigate(R.id.nav_plant_info, bundle)
             })
+            mErrorMessageLiveData.observe(viewLifecycleOwner, Observer {
+                mFragmentPlantsListBinding.vErrorMessage.visibility = View.VISIBLE
+                if(isPlantsListEmpty.value!=null
+                    && !isPlantsListEmpty.value!!){
+                    mFragmentPlantsListBinding.vPlantsList.visibility = View.GONE
+                }
+            })
         }
     }
 
     fun loadPlantsData(){
-        if(isLoadEnd){
+        val offset: Int = if(mCurrentPage*LIMIT_COUNT<=mTotalPlantsCount){
+            mCurrentPage*LIMIT_COUNT
+        }else{
             Toast.makeText(context, getString(R.string.the_end_of_data), Toast.LENGTH_SHORT).show()
             return
         }
         mCurrentPage++
-        val offset: Int = if(mCurrentPage*LIMIT_COUNT<=mTotalPlantsCount){
-            mCurrentPage*LIMIT_COUNT
-        }else{
-            isLoadEnd = true
-            mTotalPlantsCount
-        }
         Log.i(TAG, "mCurrentPage: $mCurrentPage")
         Log.i(TAG, "offset: $offset")
         if(mZooInfo!=null && !mZooInfo!!.E_Name.isNullOrEmpty()){

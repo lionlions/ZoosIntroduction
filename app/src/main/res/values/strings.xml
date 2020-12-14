@@ -15,4 +15,5 @@
     //Menu
     <string name="menu_zoos_list">館區介紹</string>
     <string name="menu_plans_list">植物介紹</string>
+    <string name="menu_open_in_browser">開啟網頁</string>
 </resources>

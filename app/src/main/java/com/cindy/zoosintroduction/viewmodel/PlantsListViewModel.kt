@@ -19,7 +19,6 @@ class PlantsListViewModel(val mRepository: ApiRepository?): ViewModel() {
     var mPlantsListLiveData: MutableLiveData<List<PlantInfo>> = MutableLiveData()
     var mTotalCount: MutableLiveData<Int> = MutableLiveData()
     var mPlantsList: ArrayList<PlantInfo> = ArrayList<PlantInfo>()
-    var mZooInfoLiveData: SingleLiveData<Zoo> = SingleLiveData()
     var mPlantsListSelectItemLiveData: SingleLiveData<PlantInfo> = SingleLiveData()
     val isPlantsListEmpty: LiveData<Boolean> = Transformations.map(mPlantsListLiveData){
         it.isNullOrEmpty()
@@ -37,9 +36,7 @@ class PlantsListViewModel(val mRepository: ApiRepository?): ViewModel() {
         if(BuildConfig.DEBUG)Log.d(TAG, "limit: $limit")
         if(BuildConfig.DEBUG)Log.d(TAG, "offset: $offset")
         if(query.isNullOrEmpty()){
-            viewModelScope.launch {
-                mErrorMessageLiveData.value = "Query String should not be Null!!"
-            }
+            setErrorMessage("Query String should not be empty!!")
             return
         }
         mRepository?.callGetPlantsList(query, limit, offset, object:
@@ -47,21 +44,26 @@ class PlantsListViewModel(val mRepository: ApiRepository?): ViewModel() {
             override fun onGetPlantsInfoDone(plantsInfoModel: PlantsInfoModel) {
                 if(BuildConfig.DEBUG)Log.v(TAG, "===== onGetPlantsInfoDone =====")
                 viewModelScope.launch {
-                    if(plantsInfoModel.result!=null
-                        && !plantsInfoModel.result!!.results.isNullOrEmpty()){
-                        if(BuildConfig.DEBUG)Log.i(TAG, "update value")
-                        mTotalCount.value = plantsInfoModel.result!!.count
-                        for(plantsInfo in plantsInfoModel.result!!.results!!){
-                            mPlantsList.add(plantsInfo)
+                    if(plantsInfoModel.result!=null){
+                        if(plantsInfoModel.result!!.count==null){
+                            setErrorMessage("無任何資料")
+                        }else{
+                            mTotalCount.value = plantsInfoModel.result!!.count
                         }
-                        mPlantsListLiveData.value = mPlantsList
+                        if(!plantsInfoModel.result!!.results.isNullOrEmpty()){
+                            if(BuildConfig.DEBUG)Log.i(TAG, "update value")
+                            for(plantsInfo in plantsInfoModel.result!!.results!!){
+                                mPlantsList.add(plantsInfo)
+                            }
+                            mPlantsListLiveData.value = mPlantsList
+                        }
+                    }else{
+                        setErrorMessage("Something wrong when getting result")
                     }
                 }
             }
             override fun onApiFailed(errorMessage: String?) {
-                viewModelScope.launch {
-                    mErrorMessageLiveData.value = errorMessage
-                }
+                setErrorMessage(errorMessage)
             }
         })
     }
@@ -70,6 +72,13 @@ class PlantsListViewModel(val mRepository: ApiRepository?): ViewModel() {
         //Go to next zoo detail fragment
         Log.v(TAG, "item click!!")
         mPlantsListSelectItemLiveData.value = plantInfo
+    }
+
+    fun setErrorMessage(errorMessage: String?, tr: Throwable? = null){
+        Log.w(TAG, errorMessage, tr)
+        viewModelScope.launch {
+            mErrorMessageLiveData.value = errorMessage
+        }
     }
 
 }

@@ -61,14 +61,21 @@ class ZoosListViewModel(): ViewModel() {
                                 processDocumentData()
                             }else{
                                 // result is null
-                                Log.w(TAG, "result is null")
+                                setErrorMessage("Result is empty")
                             }
                         }else{
-                            Log.w(TAG, "Error when getting documents.", task.exception)
+                            setErrorMessage("Error when getting documents.", task.exception)
                         }
 
                     }
                 })
+        }
+    }
+
+    fun setErrorMessage(errorMessage: String?, tr: Throwable? = null){
+        Log.w(TAG, errorMessage, tr)
+        viewModelScope.launch {
+            mErrorMessageLiveData.value = errorMessage
         }
     }
 
@@ -85,6 +92,8 @@ class ZoosListViewModel(): ViewModel() {
                     }
                 }
             }
+        }else{
+            setErrorMessage("Document data is empty")
         }
     }
 

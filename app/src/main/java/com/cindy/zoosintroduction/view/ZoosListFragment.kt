@@ -16,6 +16,7 @@ import com.cindy.zoosintroduction.R
 import com.cindy.zoosintroduction.databinding.FragmentZoosListBinding
 import com.cindy.zoosintroduction.viewmodel.ViewModelFactory
 import com.cindy.zoosintroduction.viewmodel.ZoosListViewModel
+import kotlinx.android.synthetic.main.fragment_zoos_list.*
 
 class ZoosListFragment : Fragment() {
 
@@ -65,6 +66,14 @@ class ZoosListFragment : Fragment() {
             )
             val navController: NavController = findNavController()
             navController.navigate(R.id.nav_plants, bundle)
+        })
+        mZoosListViewModel.mErrorMessageLiveData.observe(viewLifecycleOwner, Observer {
+            Log.w(TAG, "update error message")
+            mFragmentZoosListBinding.vErrorMessage.visibility = View.VISIBLE
+            if(mZoosListViewModel.isZoosListEmpty.value!=null
+                && !mZoosListViewModel.isZoosListEmpty.value!!){
+                mFragmentZoosListBinding.vZoosList.visibility = View.GONE
+            }
         })
     }
 }

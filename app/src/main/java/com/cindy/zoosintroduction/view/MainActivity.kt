@@ -1,6 +1,7 @@
 package com.cindy.zoosintroduction.view
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -27,13 +28,21 @@ class MainActivity : AppCompatActivity() {
 
     fun processView(){
         //Toolbar
+        toolbar.inflateMenu(R.menu.menu_plants_list)
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true)
         //navigation
         val navController: NavController = findNavController(R.id.nav_host_fragment)
         appBarConfiguration = AppBarConfiguration(navController.graph, vDrawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         vNavigationView.setupWithNavController(navController)
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onSupportNavigateUp(): Boolean {

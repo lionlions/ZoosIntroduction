@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
+import com.cindy.zoosintroduction.R
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -17,7 +18,7 @@ data class PlantsInfoModel(
 
 @Parcelize
 data class PlantsListResult(
-    var count: Int = 0,
+    var count: Int? = 0,
     var limit: Int = 0,
     var offset: Int = 0,
     var results: List<PlantInfo>? = listOf(),
@@ -82,6 +83,7 @@ data class PlantInfo(
                     RequestOptions()
                         .fitCenter()
                         .format(DecodeFormat.PREFER_RGB_565)
+                        .error(R.drawable.ic_baseline_error_outline_24)
                 )
                 .load(imageUrl)
                 .transition(DrawableTransitionOptions.withCrossFade(500))
